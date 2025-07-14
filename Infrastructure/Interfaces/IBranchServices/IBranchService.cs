@@ -1,5 +1,6 @@
 ﻿using Domain.ApiResponses;
 using Domain.DTOs.BranchsDTOs;
+using Domain.Entities;
 using Domain.Filters;
 
 namespace Infrastructure.Interfaces.IBranchServices;

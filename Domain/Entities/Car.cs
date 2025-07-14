@@ -7,6 +7,7 @@ public class Car
     public string? MAnufacturer { get; set; }
     public int Year { get; set; }
     public decimal PricePerDay { get; set; }
+    public int? BranchId { get; set; } 
     
     //navigations
     

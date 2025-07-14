@@ -7,7 +7,7 @@ namespace Infrastructure.Interfaces.ICarServices;
 
 public interface ICarRepositories
 {
-    Task<PagedResponse<List<GetCarDto>>> GetAllAsync(CarFilters filter);
+    Task<PagedResponse<List<Car>>> GetAllAsync(CarFilters filter);
     Task<Response<int>> CreateCarAsync(Car car);
     Task<Response<int>> UpdateCarAsync(Car car);
     Task<Response<int>> DeleteCarAsync(int id);

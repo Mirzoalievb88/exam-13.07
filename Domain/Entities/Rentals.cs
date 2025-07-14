@@ -12,6 +12,7 @@ public class Rentals
     
     //navigations
     
-    public Customers? Car { get; set; } 
+    public Car? Car { get; set; }         // ✅ правильно
     public Customers? Customer { get; set; }
+    public Branches? Branch { get; set; }
 }

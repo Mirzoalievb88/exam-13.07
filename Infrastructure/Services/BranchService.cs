@@ -2,6 +2,7 @@
 using AutoMapper;
 using Domain.ApiResponses;
 using Domain.DTOs.BranchsDTOs;
+using Domain.Entities;
 using Domain.Filters;
 using Domain.Paginations;
 using Infrastructure.Data;
@@ -9,7 +10,7 @@ using Infrastructure.Interfaces.IBranchServices;
 using Infrastructure.Mappers;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Services;
+namespace Infrastructure.Services.Branchs;
 
 public class BranchService
     (DataContext context,
@@ -38,7 +39,7 @@ public class BranchService
     public async Task<Response<string>> CreateBranchAsync(CreateBranchDto branchDto)
     {
         var branch = BranchMapper.ToEntity(branchDto);
-        var result = await branchRepositories.CreateBranchAsync(branchDto);
+        var result = await branchRepositories.CreateBranchAsync(branch);
         if (result == null!)
         {
             return new Response<string>("Error", HttpStatusCode.InternalServerError);

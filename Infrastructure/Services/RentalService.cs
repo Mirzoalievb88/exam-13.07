@@ -42,12 +42,12 @@ public class RentalService(DataContext context,
     public async Task<Response<string>> CreateRentalAsync(CreateRentalDto rentalDto)
     {
         var rental = RentalMapper.ToEntity(rentalDto);
-        var result = await rentalRepositories.CreateRentalAsync(rentalDto);
+        var result = await rentalRepositories.CreateRentalAsync(rental);
         if (result == null!)
         {
             return new Response<string>("Error", HttpStatusCode.InternalServerError);
         }
-
+        rental = RentalMapper.ToEntity(rentalDto);
         return new Response<string>(default!, "All Worked");
     }
 
@@ -59,7 +59,6 @@ public class RentalService(DataContext context,
             return new Response<string>("Error", HttpStatusCode.NotFound);
         }
         
-        rental.ToEntity(rentalDto);
         var result = await context.SaveChangesAsync();
         
         return result == 0

@@ -9,7 +9,7 @@ using Infrastructure.Interfaces.ICustomerServices;
 using Infrastructure.Mappers;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Services;
+namespace Infrastructure.Services.Customers;
 
 public class CustomerService(
     DataContext context, 
@@ -40,7 +40,7 @@ public class CustomerService(
     public async Task<Response<string>> CreateCustomerAsync(UpdateCustomerDto customerDto)
     {
         var customer = CustomerMapper.ToEntity(customerDto);
-        var result = await customerRepositories.CreateCustomerAsync(customerDto);
+        var result = await customerRepositories.CreateCustomerAsync(customer);
 
         if (result == null!)
         {

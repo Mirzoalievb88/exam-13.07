@@ -12,19 +12,30 @@ public class DataContext(DbContextOptions<DataContext> options) : DbContext(opti
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Customers>()
-            .HasMany(x => x.Rentals)
-            .WithOne(r => r.Car)
-            .HasForeignKey(r => r.CarId);
-        
-        modelBuilder.Entity<Branches>()
-            .HasMany(b => b.Cars)
-            .WithOne(c => c.Branch)
-            .HasForeignKey(c => c.Branch);
-        
+        base.OnModelCreating(modelBuilder);
+
         modelBuilder.Entity<Rentals>()
             .HasOne(r => r.Customer)
             .WithMany(c => c.Rentals)
-            .HasForeignKey(c => c.CustomerId);
+            .HasForeignKey(r => r.CustomerId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<Rentals>()
+            .HasOne(r => r.Car)
+            .WithMany(c => c.Rentals)
+            .HasForeignKey(r => r.CarId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<Rentals>()
+            .HasOne(r => r.Branch)
+            .WithMany()
+            .HasForeignKey(r => r.BranchId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<Car>()
+            .HasOne(c => c.Branch)
+            .WithMany(b => b.Cars)
+            .HasForeignKey(c => c.BranchId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

@@ -1,4 +1,7 @@
 ﻿using System.Net;
+using Domain.DTOs.BranchsDTOs;
+using Domain.DTOs.CarDTOs;
+using Domain.DTOs.CustomerDTOs;
 
 namespace Domain.ApiResponses;
 

@@ -2,6 +2,7 @@
 using AutoMapper;
 using Domain.ApiResponses;
 using Domain.DTOs.CarDTOs;
+using Domain.Entities;
 using Domain.Filters;
 using Domain.Paginations;
 using Infrastructure.Data;
@@ -9,7 +10,7 @@ using Infrastructure.Interfaces.ICarServices;
 using Infrastructure.Mappers;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Services;
+namespace Infrastructure.Services.Cars;
 
 public class CarService(
     DataContext context, 
