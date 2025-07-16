@@ -24,6 +24,8 @@ builder.Services.AddOpenApi();  // если у тебя есть расшире�
 
 builder.Services.AddDbContext<DataContext>(opt =>
     opt.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddMemoryCache();
+
 
 // Identity configuration
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
